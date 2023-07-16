@@ -5,7 +5,7 @@ logger:
 
 uart:
   - id: uart_0
-    baud_rate: 9600
+    baud_rate: 115200
     tx_pin: ${tx_pin}
     rx_pin: ${rx_pin}
     debug:
