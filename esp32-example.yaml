@@ -4,7 +4,7 @@ substitutions:
   external_components_source: github://smaksimowicz/esphome-hewalex-g422@main
   tx_pin: GPIO17
   rx_pin: GPIO16
-  rx_timeout: 450ms
+  rx_timeout: 150ms
 
 esphome:
   name: ${name}

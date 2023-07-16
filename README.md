@@ -1,29 +1,19 @@
-# esphome-jbd-bms
-
-![GitHub actions](https://github.com/syssi/esphome-jbd-bms/actions/workflows/ci.yaml/badge.svg)
-![GitHub stars](https://img.shields.io/github/stars/syssi/esphome-jbd-bms)
-![GitHub forks](https://img.shields.io/github/forks/syssi/esphome-jbd-bms)
-![GitHub watchers](https://img.shields.io/github/watchers/syssi/esphome-jbd-bms)
-[!["Buy Me A Coffee"](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/syssi)
-
-ESPHome component to monitor and control a JBD-UP16S010 via RS485-TTL 
-
-Fork supports parallel functionality of JBD-UP16S010. 
-Reading all packs data will is done by one ESP32/ESP8266 interface. 
+# esphome-hewalex-g422
+ 
 
 ## Supported devices
 
-* JBD-UP16S010-L16S-200A-200A-B-U-R-C-A03 
+* HEWALEX G422
 
 ## Schematics
 
 ```
                 RS485-TTL (3.3V)
 ┌──────────┐                ┌─────────┐
-│         1│<----- B- ----->│         │
-│ JBD-BMS 2│<----- A+------>│ ESP32/  │
-│  RS485  3│<----- GND ---->│ ESP8266 │<-- 3.3V
-│   RJ45   │                │         │<-- GND
+│        10│<----- B- ----->│         │
+│ G422    9│<----- A+------>│ ESP32/  │
+│         ││                  ESP8266 │<-- 3.3V
+│          │                │         │<-- GND
 └──────────┘                └─────────┘
 
 
@@ -32,7 +22,7 @@ Reading all packs data will is done by one ESP32/ESP8266 interface.
 You can install this component with [ESPHome external components feature](https://esphome.io/components/external_components.html) like this:
 ```yaml
 external_components:
-  - source: github://smaksimowicz/esphome-jbd-bms@main
+  - source: github://smaksimowicz/esphome-hewalex-g422@main
 ```
 
 or just use the `esp32-example.yaml` as proof of concept:
@@ -42,8 +32,8 @@ or just use the `esp32-example.yaml` as proof of concept:
 pip3 install esphome
 
 # Clone this external component
-git clone https://github.com/smaksimowicz/esphome-jbd-bms.git
-cd esphome-jbd-bms
+git clone https://github.com/smaksimowicz/esphome-hewalex-g422.git
+cd esphome-hewalex-g422
 
 # Create a secrets.yaml containing some setup specific secrets
 cat > secrets.yaml <<EOF
@@ -63,41 +53,32 @@ esphome run esp32-example.yaml
 
 ## Example response all sensors enabled
 ```bash
-[19:37:33][I][jbd_bms:246]: Hardware info frame (37 bytes) received Modbus Addres 0
-[19:37:33][D][jbd_bms:255]:   Device model: 
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 total voltage': Sending state 0.00000 V with 2 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 current': Sending state 0.00000 A with 1 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 power': Sending state 0.00000 W with 1 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 charging power': Sending state 0.00000 W with 2 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 discharging power': Sending state 0.00000 W with 2 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 capacity remaining': Sending state 0.00000 Ah with 2 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 nominal capacity': Sending state 200.00000 Ah with 2 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 charging cycles': Sending state 0.00000  with 0 decimals of accuracy
-[19:37:33][D][jbd_bms:282]:   Date of manufacture: 2023.5.24
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 balancer status bitmask': Sending state 0.00000  with 0 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 errors bitmask': Sending state 10.00000  with 0 decimals of accuracy
-[19:37:33][D][text_sensor:064]: 'jbd-bms bms0 errors': Sending state 'Cell undervoltage;Pack undervoltage'
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 software version': Sending state 2.30000  with 1 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 state of charge': Sending state 0.00000 % with 0 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 operation status bitmask': Sending state 0.00000  with 0 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 battery strings': Sending state 16.00000  with 0 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 alarm bitmask': Sending state 16384.00000  with 0 decimals of accuracy
-[19:37:33][D][text_sensor:064]: 'jbd-bms bms0 alarms': Sending state 'Low capacity alarms'
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 temperature ambient': Sending state 27.50000 °C with 1 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 temperature fet': Sending state 26.80000 °C with 1 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 temperature 1': Sending state 150.00000 °C with 1 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 temperature 2': Sending state 150.00000 °C with 1 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 temperature 3': Sending state 150.00000 °C with 1 decimals of accuracy
-[19:37:33][D][sensor:094]: 'jbd-bms bms0 temperature 4': Sending state -30.00000 °C with 1 decimals of accuracy
-[19:37:33][D][uart_debug:114]: <<< DD:00:03:00:25:00:00:00:00:00:00:4E:20:00:00:2E:B8:00:00:00:00:00:0A:23:00:00:10:40:00:0B:BE:0B:B7:04:10:87:10:87:10:87:09:7F:FA:2B:77
-[19:37:34][D][uart_debug:114]: >>> DD:01:A5:03:00:FF:57:77:DD:01:A5:04:00:FF:56:77
-[19:37:34][D][uart_debug:114]: >>> DD:02:A5:03:00:FF:56:77:DD:02:A5:04:00:FF:55:77
-[19:37:35][D][uart_debug:114]: >>> DD:00:A5:03:00:FF:58:77:DD:00:A5:04:00:FF:57:77
+[23:46:04][D][uart_debug:114]: >>> 69:02:01:84:00:00:0C:F6:02:00:01:00:40:80:00:32:64:00:BD:B2
+[23:46:04][D][sensor:094]: 'T1 (Collectors temp)': Sending state 21.00000 °C with 2 decimals of accuracy
+[23:46:04][D][sensor:094]: 'T2 (Tank bottom temp)': Sending state 24.00000 °C with 2 decimals of accuracy
+[23:46:04][D][sensor:094]: 'T3 (Air separator temp)': Sending state 27.00000 °C with 2 decimals of accuracy
+[23:46:04][D][sensor:094]: 'T4 (Tank top temp)': Sending state 43.00000 °C with 2 decimals of accuracy
+[23:46:04][D][sensor:094]: 'T5 (Boiler outlet temp)': Sending state 0.00000 °C with 2 decimals of accuracy
+[23:46:04][D][sensor:094]: 'T6 ()': Sending state 0.00000 °C with 2 decimals of accuracy
+[23:46:04][D][sensor:094]: 'Collector Power (W)': Sending state 0.00000 W with 0 decimals of accuracy
+[23:46:04][D][sensor:094]: 'Consumption (W)': Sending state 0.00000 W with 0 decimals of accuracy
+[23:46:04][D][uart_debug:114]: <<< 69:01:02:84:00:00:3E:0D:01:00:02:00:50:80:00:32:64:00:21:90:01:61:01:00:67:C7:00:00:00:00:00:00:00:00:00:00:00:00:17:07:10:06:16:38:13:00:15:00:18:00:1B:00:2B:00:00:00:00:00:00:00:00:00:00:00:00:00:F0:00:B2:93
+[23:46:04][D][uart_debug:114]: >>> 69:02:01:84:00:00:0C:F6:02:00:01:00:40:80:00:32:96:00:C8:11
+[23:46:04][D][sensor:094]: 'Collector Active (1/0)': Sending state 0.00000  with 0 decimals of accuracy
+[23:46:04][D][sensor:094]: 'Flow Rate (l/min)': Sending state 0.00000 l/min with 2 decimals of accuracy
+[23:46:04][D][sensor:094]: 'Collector Pump (P) ON (1/0)': Sending state 0.00000  with 0 decimals of accuracy
+[23:46:04][D][sensor:094]: 'Boiler Pump (K) ON (1/0)': Sending state 0.00000  with 0 decimals of accuracy
+[23:46:04][D][sensor:094]: 'Circulation Pump (C) ON (1/0)': Sending state 0.00000  with 0 decimals of accuracy
+[23:46:04][D][sensor:094]: 'Collector Pump Speed (0-15)': Sending state 0.00000  with 0 decimals of accuracy
+[23:46:04][D][sensor:094]: 'Total Energy (kWh)': Sending state 0.00000 kWh with 2 decimals of accuracy
+[23:46:04][D][uart_debug:114]: <<< 69:01:02:84:00:00:3E:0D:01:00:02:00:50:80:00:32:96:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:04:00:0A:00:0A:00:01:00:01:00:00:00:E7:FF:0A:00:1E:00:01:00:01:00:00:00:01:00:01:00:00:00:00:45
+[23:46:04][D][uart_debug:114]: >>> 69:02:01:84:00:00:0C:F6:02:00:01:00:40:80:00:32:C8:00:E5:A1
+[23:46:04][D][uart_debug:114]: <<< 69:01:02:84:00:00:3E:0D:01:00:02:00:50:80:00:32:C8:00:01:00:01:00:01:00:00:00:08:00:05:00:55:00:29:00:28:00:30:00:4B:00:00:00:00:00:DC:05:01:00:5A:00:00:00:01:00:00:00:00:00:00:00:50:00:28:00:06:00:00:00:8F:1B
 ```
 
 ## Protocol
 
-See [ https://github.com/smaksimowicz/esphome-jbd-bms/blob/main/docs/Communication%20protocol-QM-UPS1601.pdf ]
+ 
 
 ## Known issues
 
@@ -105,7 +86,7 @@ None.
 
 ## Goodies
 
-Support for external active balancer in HA automation with enable button for instance models like: QUCC-QP-1710A. 
+ 
 
 ## Debugging
 
@@ -126,8 +107,4 @@ uart:
 
 ## References
 
-* https://github.com/ioBroker/AdapterRequests/issues/512
-* https://github.com/sshoecraft/jbdtool/blob/main/jbd.c
-* https://gitlab.com/bms-tools/bms-tools
-* https://github.com/kolins-cz/Smart-BMS-Bluetooth-ESP32
-* https://github.com/ForrestFire0/GenericBMSArduino
+ 
