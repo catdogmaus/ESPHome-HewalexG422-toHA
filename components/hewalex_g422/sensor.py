@@ -4,11 +4,16 @@ import esphome.config_validation as cv
 from esphome.const import (
  
     DEVICE_CLASS_TEMPERATURE,
+    DEVICE_CLASS_POWER,
+    DEVICE_CLASS_ENERGY,
+    DEVICE_CLASS_EMPTY,
     ICON_EMPTY,
     STATE_CLASS_MEASUREMENT,
     UNIT_CELSIUS,
     UNIT_EMPTY, 
     UNIT_PERCENT,
+    UNIT_WATT ,
+    UNIT_KILOWATT_HOURS ,
  
 )
 
@@ -27,8 +32,19 @@ CONF_TEMPERATURE_4 = "temperature_4"
 CONF_TEMPERATURE_5 = "temperature_5"
 CONF_TEMPERATURE_6 = "temperature_6"
  
-ICON_TEMPERATURE = "mdi:temperature-celsius"
  
+CONF_COLLECTOR_POWER = "collector_power"
+CONF_CONSUPTION_W = "consumption_w"
+CONF_COLLECTOR_ACTIVE = "collector_active"
+CONF_FLOW_RATE = "flow_rate"
+CONF_COLLECTOR_PUMP_ON = "collector_pump_on"
+CONF_BOILER_PUMP_ON =  "boiler_pump_on"
+CONF_CIRCULATION_PUMP_ON = "circulation_pump_on"
+CONF_COLLECTOR_PUMP_SPEED = "collector_pump_speed"
+CONF_TOTAL_ENERGY_KWH =  "total_energy_kwh"
+ 
+ICON_TEMPERATURE = "mdi:temperature-celsius"
+ICON_SOLAR_POWER = "mdi:solar-power" 
  
 TEMPERATURES = [
     CONF_TEMPERATURE_1,
@@ -40,7 +56,15 @@ TEMPERATURES = [
 ]
 
 SENSORS = [
- 
+    CONF_COLLECTOR_POWER,
+    CONF_CONSUPTION_W,
+    CONF_COLLECTOR_ACTIVE,
+    CONF_FLOW_RATE,
+    CONF_COLLECTOR_PUMP_ON,
+    CONF_BOILER_PUMP_ON,
+    CONF_CIRCULATION_PUMP_ON,
+    CONF_COLLECTOR_PUMP_SPEED,
+    CONF_TOTAL_ENERGY_KWH,
 ]
 
 # pylint: disable=too-many-function-args
@@ -89,6 +113,70 @@ CONFIG_SCHEMA = cv.Schema(
             device_class=DEVICE_CLASS_TEMPERATURE,
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
+        cv.Optional(CONF_COLLECTOR_POWER): sensor.sensor_schema(
+            unit_of_measurement=UNIT_WATT ,
+            icon=ICON_SOLAR_POWER,
+            accuracy_decimals=0,
+            device_class=DEVICE_CLASS_POWER,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ), 
+         cv.Optional(CONF_CONSUPTION_W): sensor.sensor_schema(
+            unit_of_measurement=UNIT_WATT ,
+            icon=ICON_EMPTY,
+            accuracy_decimals=0,
+            device_class=DEVICE_CLASS_POWER,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ), 
+        cv.Optional(CONF_COLLECTOR_ACTIVE): sensor.sensor_schema(
+            unit_of_measurement=UNIT_EMPTY,
+            icon=ICON_EMPTY,
+            accuracy_decimals=0,
+            device_class=DEVICE_CLASS_EMPTY,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ), 
+        cv.Optional(CONF_FLOW_RATE): sensor.sensor_schema(
+            unit_of_measurement=UNIT_EMPTY,
+            icon=ICON_EMPTY,
+            accuracy_decimals=2,
+            device_class=DEVICE_CLASS_EMPTY,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ), 
+         cv.Optional(CONF_COLLECTOR_PUMP_ON): sensor.sensor_schema(
+            unit_of_measurement=UNIT_EMPTY,
+            icon=ICON_EMPTY,
+            accuracy_decimals=0,
+            device_class=DEVICE_CLASS_EMPTY,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ), 
+         cv.Optional(CONF_BOILER_PUMP_ON): sensor.sensor_schema(
+            unit_of_measurement=UNIT_EMPTY,
+            icon=ICON_EMPTY,
+            accuracy_decimals=0,
+            device_class=DEVICE_CLASS_EMPTY,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ), 
+         cv.Optional(CONF_CIRCULATION_PUMP_ON): sensor.sensor_schema(
+            unit_of_measurement=UNIT_EMPTY,
+            icon=ICON_EMPTY,
+            accuracy_decimals=0,
+            device_class=DEVICE_CLASS_EMPTY,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ),  
+        cv.Optional(CONF_COLLECTOR_PUMP_SPEED): sensor.sensor_schema(
+            unit_of_measurement=UNIT_EMPTY,
+            icon=ICON_EMPTY,
+            accuracy_decimals=0,
+            device_class=DEVICE_CLASS_EMPTY,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ), 
+        cv.Optional(CONF_TOTAL_ENERGY_KWH): sensor.sensor_schema(
+            unit_of_measurement=UNIT_KILOWATT_HOURS ,
+            icon=ICON_EMPTY,
+            accuracy_decimals=2,
+            device_class=DEVICE_CLASS_ENERGY,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ), 
+ 
     }
 )
 

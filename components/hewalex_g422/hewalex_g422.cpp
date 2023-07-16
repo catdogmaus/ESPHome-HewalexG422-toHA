@@ -76,6 +76,7 @@ bool HewalexG422::parse_g422_responce_byte_(uint8_t byte) {
       return false;
   }
   uint8_t startReg = raw[16];
+  uint16_t pump_states = 0; 
   for(uint8_t iPacketPos=0; iPacketPos<raw[15];iPacketPos++)
   {
      if (iPacketPos % 2 == 0)
@@ -84,17 +85,46 @@ bool HewalexG422::parse_g422_responce_byte_(uint8_t byte) {
          switch(iReg)
          {
           case 128: //T1
-           ((uint16_t)raw[19+iPacketPos]<<8  | raw[18+iPacketPos])
+               this->publish_state_(this->temperatures_[0].temperature_sensor_,   this->getTemp((uint8_t *)&raw[18+iPacketPos] , 1.0f));
           break;
           case 130: //T2
+               this->publish_state_(this->temperatures_[1].temperature_sensor_,   this->getTemp((uint8_t *)&raw[18+iPacketPos] , 1.0f));
           break;
           case 132: //T3
+               this->publish_state_(this->temperatures_[2].temperature_sensor_,   this->getTemp((uint8_t *)&raw[18+iPacketPos] , 1.0f));
           break;
           case 134: //T4
+               this->publish_state_(this->temperatures_[3].temperature_sensor_,   this->getTemp((uint8_t *)&raw[18+iPacketPos] , 1.0f));
           break;
           case 136: //T5
+               this->publish_state_(this->temperatures_[4].temperature_sensor_,   this->getTemp((uint8_t *)&raw[18+iPacketPos] , 1.0f));
           break;
           case 138: //T6
+               this->publish_state_(this->temperatures_[5].temperature_sensor_,   this->getTemp((uint8_t *)&raw[18+iPacketPos] , 1.0f));
+          break;
+          case 144: //CollectorPower
+               this->publish_state_(this->collector_power_,   this->getWord((uint8_t *)&raw[18+iPacketPos]));
+          break;
+          case 148: //Consumption
+               this->publish_state_(this->consumption_w_,  collector_pump_on_->raw_state > 0 ? this->getWord((uint8_t *)&raw[18+iPacketPos])*0.1f : 0);
+          break;
+          case 150: //Collector Active
+               this->publish_state_(this->collector_active_,   this->getWord((uint8_t *)&raw[18+iPacketPos]) );
+          break;
+          case 152: //FlowRate
+               this->publish_state_(this->flow_rate_,   this->getWord((uint8_t *)&raw[18+iPacketPos]) );
+          break;
+          case 154: //CollectorPumpON BoilerPumpON CirculationPumpOn
+               pump_states = this->getWord((uint8_t *)&raw[18+iPacketPos]);
+               this->publish_state_(this->collector_pump_on_, (pump_states & 1)  );
+               this->publish_state_(this->boiler_pump_on_,   (pump_states & 2) >>1 );           
+               this->publish_state_(this->circulation_pump_on_,    (pump_states & 4) >>2 );
+          break;
+          case 156:  //CollectorPumpSpeed
+               this->publish_state_(this->collector_pump_speed_,this->getWord((uint8_t *)&raw[18+iPacketPos])  );
+          break;
+          case 166:  //TotalEnergy
+               this->publish_state_(this->total_energy_kwh_,this->getWord((uint8_t *)&raw[18+iPacketPos])*0.1f );
           break;
          }
      }
@@ -135,12 +165,13 @@ uint16_t HewalexG422::getWord(uint8_t *d)
 {
       return ((uint16_t)d[1] << 8) | d[0];
 }
+
 float HewalexG422::getTemp(uint8_t * d, float scale)
 {
-        uint16_t word = this.getWord(d);
-        if word & 0x8000:
+        uint16_t word = this->getWord(d);
+        if( word & 0x8000)
             word = word - 0x10000;
-        return word * divisor;
+        return word * scale;
 }
 
 void HewalexG422::HewalexRequest(uint8_t requestID)
@@ -194,7 +225,16 @@ void HewalexG422::dump_config() {  // NOLINT(google-readability-function-size,re
   LOG_SENSOR("", "T5", this->temperatures_[4].temperature_sensor_);
   LOG_SENSOR("", "T6", this->temperatures_[5].temperature_sensor_);
  
-  
+  LOG_SENSOR("", "collector_power_",this->collector_power_);
+  LOG_SENSOR("", "consumption_w_",this->consumption_w_);
+  LOG_SENSOR("", "collector_active_",this->collector_active_);
+  LOG_SENSOR("", "flow_rate_",this->flow_rate_);
+  LOG_SENSOR("", "collector_pump_on_",this->collector_pump_on_);
+  LOG_SENSOR("", "boiler_pump_on_",this->boiler_pump_on_);
+  LOG_SENSOR("", "circulation_pump_on_",circulation_pump_on_);
+  LOG_SENSOR("", "collector_pump_speed_",this->collector_pump_speed_);
+  LOG_SENSOR("", "total_energy_kwh_",this->total_energy_kwh_);
+
 
   this->check_uart_settings(115200);
 }
@@ -219,10 +259,21 @@ void HewalexG422::publish_device_unavailable_() {
  
   this->publish_state_(this->online_status_binary_sensor_, false);
 
+  this->publish_state_(collector_power_,NAN);
+  this->publish_state_(consumption_w_,NAN);
+  this->publish_state_(collector_active_,NAN);
+  this->publish_state_(flow_rate_,NAN);
+  this->publish_state_(collector_pump_on_,NAN);
+  this->publish_state_(boiler_pump_on_,NAN);
+  this->publish_state_(circulation_pump_on_,NAN);
+  this->publish_state_(collector_pump_speed_,NAN);
+  this->publish_state_(total_energy_kwh_,NAN);
+
   for (auto &temperature : this->temperatures_) {
     this->publish_state_(temperature.temperature_sensor_, NAN);
   }
- 
+  
+  
 }
 
 

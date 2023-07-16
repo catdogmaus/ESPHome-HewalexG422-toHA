@@ -61,6 +61,34 @@ sensor:
   - platform: hewalex_g422
     hewalex_g422_id: g422_0
     temperature_1:
-      name: "T1" 
+      name: "T1 (Collectors temp)" 
     temperature_2:
-      name: "T2"   
+      name: "T2 (Tank bottom temp)"   
+    temperature_3:
+      name: "T3 (Air separator temp)"  
+    temperature_4:
+      name: "T4 (Tank top temp)" 
+    temperature_5:
+      name: "T5 (Boiler outlet temp)" 
+    temperature_6:
+      name: "T6 ()" 
+    collector_power:
+      name: "Collector Power (W)"
+    consumption_w:  
+      name: "Consumption (W)"
+    collector_active:  
+      name: "Collector Active (1/0)"
+    flow_rate:
+      name: "Flow Rate (l/min)"
+      unit_of_measurement: "l/min"
+    collector_pump_on:
+      name: "Collector Pump (P) ON (1/0)"
+    boiler_pump_on:
+      name: "Boiler Pump (K) ON (1/0)" 
+    circulation_pump_on:
+      name: "Circulation Pump (C) ON (1/0)"
+    collector_pump_speed:
+      name: "Collector Pump Speed (0-15)" 
+    total_energy_kwh:
+      name: "Total Energy (kWh)"   
+ 

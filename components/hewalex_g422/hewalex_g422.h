@@ -20,7 +20,17 @@ class HewalexG422 : public uart::UARTDevice, public PollingComponent {
   float get_setup_priority() const override;
   void set_enable_fake_traffic(bool enable_fake_traffic) { enable_fake_traffic_ = enable_fake_traffic; }
   void set_rx_timeout(uint16_t rx_timeout) { rx_timeout_ = rx_timeout; }
-  
+
+ 
+  void set_total_energy_kwh_sensor(sensor::Sensor *total_energy_kwh ){ total_energy_kwh_ =total_energy_kwh; }
+  void set_collector_pump_speed_sensor(sensor::Sensor *collector_pump_speed ){ collector_pump_speed_ =collector_pump_speed; }
+  void set_circulation_pump_on_sensor(sensor::Sensor *circulation_pump_on ){ circulation_pump_on_ =circulation_pump_on; }
+  void set_boiler_pump_on_sensor(sensor::Sensor *boiler_pump_on ){ boiler_pump_on_ =boiler_pump_on; }
+  void set_collector_pump_on_sensor(sensor::Sensor *collector_pump_on ){ collector_pump_on_ =collector_pump_on; }
+  void set_flow_rate_sensor(sensor::Sensor *flow_rate ){ flow_rate_ =flow_rate; }
+  void set_collector_active_sensor(sensor::Sensor *collector_active ){ collector_active_ =collector_active; }
+  void set_collector_power_sensor(sensor::Sensor *collector_power ){ collector_power_ =collector_power; } 
+  void set_consumption_w_sensor(sensor::Sensor *consumption_w ){ consumption_w_ =consumption_w; } 
   void set_temperature_sensor(uint8_t temperature, sensor::Sensor *temperature_sensor) {
     this->temperatures_[temperature].temperature_sensor_ = temperature_sensor;
   }
@@ -36,8 +46,17 @@ class HewalexG422 : public uart::UARTDevice, public PollingComponent {
   sensor::Sensor *temperature_t4_;
   sensor::Sensor *temperature_t5_;
   sensor::Sensor *temperature_t6_;
-
+  sensor::Sensor *collector_power_;
+  sensor::Sensor *consumption_w_;
+  sensor::Sensor *collector_active_;
+  sensor::Sensor *flow_rate_;
+  sensor::Sensor *collector_pump_on_;
+  sensor::Sensor *boiler_pump_on_;
+  sensor::Sensor *circulation_pump_on_;
+  sensor::Sensor *collector_pump_speed_;
+  sensor::Sensor *total_energy_kwh_;
  
+
   struct Temperature {
     sensor::Sensor *temperature_sensor_{nullptr};
   } temperatures_[6];
