@@ -1,7 +1,7 @@
 <<: !include esp8266-example-debug.yaml
 
 hewalex_g422:
-  - id: hewalex_g422
+  - id: g422_0
     uart_id: uart_0
     update_interval: 2s
     rx_timeout: ${rx_timeout}
