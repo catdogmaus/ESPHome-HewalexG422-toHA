@@ -92,3 +92,9 @@ sensor:
     total_energy_kwh:
       name: "Collector Total Energy (kWh)"   
  
+switch:
+  - platform: gpio
+    pin:
+     number: GPIO32
+     inverted: false
+    name: "Circulation pump switch"
