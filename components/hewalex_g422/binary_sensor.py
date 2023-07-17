@@ -7,8 +7,8 @@ from esphome.const import (
     ENTITY_CATEGORY_DIAGNOSTIC,
 )
 
-from . import CONF_JBD_BMS_ID, JbdBms
-from .const import CONF_CHARGING, CONF_DISCHARGING
+from . import CONF_HEWALEG_G422_ID, HewalexG422
+ 
 
 DEPENDENCIES = ["hewalex_g422"]
 
@@ -22,14 +22,14 @@ BINARY_SENSORS = [
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(CONF_JBD_BMS_ID): cv.use_id(JbdBms),
+        cv.GenerateID(CONF_HEWALEG_G422_ID): cv.use_id(HewalexG422),
         
     }
 )
 
 
 async def to_code(config):
-    hub = await cg.get_variable(config[CONF_JBD_BMS_ID])
+    hub = await cg.get_variable(config[CONF_HEWALEG_G422_ID])
     for key in BINARY_SENSORS:
         if key in config:
             conf = config[key]
