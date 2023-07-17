@@ -47,7 +47,7 @@ mqtt:
   
   hewalex_g422:
     - id: g422_0   
-      update_interval: 2s
+      update_interval: 1s
       rx_timeout: ${rx_timeout}
   
   sensor:
@@ -84,6 +84,9 @@ mqtt:
         name: "Collector Pump Speed (0-15)" 
       total_energy_kwh:
         name: "Collector Total Energy (kWh)"  
+        filters:
+          lambda: return 5079138.0 ;
+
 switch:
   - platform: gpio
     pin:
