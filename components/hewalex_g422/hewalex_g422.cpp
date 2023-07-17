@@ -124,8 +124,9 @@ bool HewalexG422::parse_g422_responce_byte_(uint8_t byte) {
                this->publish_state_(this->collector_pump_speed_,this->getWord((uint8_t *)&raw[18+iPacketPos])  );
           break;
           case 166:  //TotalEnergy
-               this->publish_state_(this->total_energy_kwh_,0.1f*this->getWord((uint8_t *)&raw[18+iPacketPos]) );
+               this->publish_state_(this->total_energy_kwh_,0.1f*(this->getWord((uint8_t *)&raw[18+iPacketPos]) << 16 | this->getWord((uint8_t *)&raw[20+iPacketPos])) );
           break;
+ 
          }
      }
   }

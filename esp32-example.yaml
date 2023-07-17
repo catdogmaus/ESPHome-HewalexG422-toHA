@@ -32,7 +32,7 @@ ota:
  
 
 logger:
-  level: DEBUG
+  level: NONE
 
 # If you use Home Assistant please remove this `mqtt` section and uncomment the `api` component!
 # The native API has many advantages over MQTT: https://esphome.io/components/api.html#advantages-over-mqtt
@@ -91,8 +91,8 @@ sensor:
       name: "Collector Pump Speed (0-15)" 
     total_energy_kwh:
       name: "Collector Total Energy (kWh)"   
- 
-switch:
+
+ switch:
   - platform: gpio
     pin:
      number: GPIO32
