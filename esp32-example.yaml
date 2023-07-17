@@ -90,5 +90,5 @@ sensor:
     collector_pump_speed:
       name: "Collector Pump Speed (0-15)" 
     total_energy_kwh:
-      name: "Total Energy (kWh)"   
+      name: "Collector Total Energy (kWh)"   
  
