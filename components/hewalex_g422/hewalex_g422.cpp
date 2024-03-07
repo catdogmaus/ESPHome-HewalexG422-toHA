@@ -169,7 +169,7 @@ uint16_t HewalexG422::getWord(uint8_t *d)
 
 float HewalexG422::getTemp(uint8_t * d, float scale)
 {
-        uint16_t word = this->getWord(d);
+        int16_t word = this->getWord(d);
         if( word & 0x8000)
             word = word - 0x10000;
         return word * scale;
