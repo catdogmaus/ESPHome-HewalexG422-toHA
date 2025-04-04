@@ -8,8 +8,8 @@
 ![Hardware](https://github.com/catdogmaus/ESPHome-HewalexG422-toHA/blob/main/files/sensors.jpg)
 
 ## What has changed
-
-Tis fork is intended to fix some shortcomings of original script.<br/>
+I am not coder and this repo exists because original code did not work for me and original owner seems to have abandon it. That means I have only made nessesary changes and probably are not able to maintain it. <br/>
+This fork is intended to fix some shortcomings of original script.<br/>
 
 Hewalex documenation tells specifically that uart baud rate must be 38400! This is fixed as well in software as in sample yaml.<br/>
 Fixed "Total Energy" output. In my case it did originally show some crazy -490000 kWh.<br/>
