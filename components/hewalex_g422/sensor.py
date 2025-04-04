@@ -43,8 +43,11 @@ CONF_CIRCULATION_PUMP_ON = "circulation_pump_on"
 CONF_COLLECTOR_PUMP_SPEED = "collector_pump_speed"
 CONF_TOTAL_ENERGY_KWH =  "total_energy_kwh"
  
-ICON_TEMPERATURE = "mdi:temperature-celsius"
+ICON_TEMPERATURE = "mdi:thermometer"
 ICON_SOLAR_POWER = "mdi:solar-power" 
+ICON_FLOW = "mdi:water-pump"
+POWER = "mdi:power"
+SPEED = "mdi:speedometer"
  
 TEMPERATURES = [
     CONF_TEMPERATURE_1,
@@ -123,48 +126,48 @@ CONFIG_SCHEMA = cv.Schema(
          cv.Optional(CONF_CONSUPTION_W): sensor.sensor_schema(
             unit_of_measurement=UNIT_WATT ,
             icon=ICON_EMPTY,
-            accuracy_decimals=0,
+            accuracy_decimals=1,
             device_class=DEVICE_CLASS_POWER,
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
         cv.Optional(CONF_COLLECTOR_ACTIVE): sensor.sensor_schema(
             unit_of_measurement=UNIT_EMPTY,
-            icon=ICON_EMPTY,
+            icon=POWER,
             accuracy_decimals=0,
             device_class=DEVICE_CLASS_EMPTY,
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
         cv.Optional(CONF_FLOW_RATE): sensor.sensor_schema(
             unit_of_measurement=UNIT_EMPTY,
-            icon=ICON_EMPTY,
+            icon=ICON_FLOW,
             accuracy_decimals=2,
             device_class=DEVICE_CLASS_EMPTY,
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
          cv.Optional(CONF_COLLECTOR_PUMP_ON): sensor.sensor_schema(
             unit_of_measurement=UNIT_EMPTY,
-            icon=ICON_EMPTY,
+            icon=POWER,
             accuracy_decimals=0,
             device_class=DEVICE_CLASS_EMPTY,
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
          cv.Optional(CONF_BOILER_PUMP_ON): sensor.sensor_schema(
             unit_of_measurement=UNIT_EMPTY,
-            icon=ICON_EMPTY,
+            icon=POWER,
             accuracy_decimals=0,
             device_class=DEVICE_CLASS_EMPTY,
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
          cv.Optional(CONF_CIRCULATION_PUMP_ON): sensor.sensor_schema(
             unit_of_measurement=UNIT_EMPTY,
-            icon=ICON_EMPTY,
+            icon=POWER,
             accuracy_decimals=0,
             device_class=DEVICE_CLASS_EMPTY,
             state_class=STATE_CLASS_MEASUREMENT,
         ),  
         cv.Optional(CONF_COLLECTOR_PUMP_SPEED): sensor.sensor_schema(
             unit_of_measurement=UNIT_EMPTY,
-            icon=ICON_EMPTY,
+            icon=SPEED,
             accuracy_decimals=0,
             device_class=DEVICE_CLASS_EMPTY,
             state_class=STATE_CLASS_MEASUREMENT,
