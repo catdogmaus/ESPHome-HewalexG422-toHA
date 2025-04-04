@@ -45,7 +45,7 @@ or just use the `esp32-example.yaml`
 
 ## Hardware 
 
-
+![Hardware](https://github.com/catdogmaus/ESPHome-HewalexG422-toHA/blob/main/files/scema.png)
 
 ## Issues
 
