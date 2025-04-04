@@ -56,7 +56,7 @@ esp32_improv:
 #   port: 80
 
 external_components:
-  - source: components
+  - source: github://catdogmaus/ESPHome-HewalexG422-toHA@main
 
 uart:
     baud_rate: 38400
