@@ -19,9 +19,9 @@ Added "Today's Energy" for HA statistics. This uses ESPHome built in mechanism s
 Added "Today's Consuption".<br/>
 Added mutch more understandable hardware instructions.
 
-## Total Enargy
+## Total Energy
 
-Total Enargy "fix" is made in ESPHome YAML. Reason for that is, I am not sure if it does work exactly same for all users. If your Total Enargy output is still not correct it should be easy to correct for everybody. In yaml:
+Total Energy "fix" is made in ESPHome YAML. Reason for that is, I am not sure if it does work exactly same for all users. If your Total Energy output is still not correct it should be easy to correct for everybody. In yaml:
 ```
   - platform: template
     name: "Collector Total Energy Adjusted" # Output actual energy
