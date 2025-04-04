@@ -106,7 +106,7 @@ bool HewalexG422::parse_g422_responce_byte_(uint8_t byte) {
                this->publish_state_(this->collector_power_,   this->getWord((uint8_t *)&raw[18+iPacketPos]));
           break;
           case 148: //Consumption
-               this->publish_state_(this->consumption_w_,  collector_pump_on_->raw_state > 0 ? 0.1f*this->getWord((uint8_t *)&raw[18+iPacketPos]) : 0);
+               this->publish_state_(this->consumption_w_,   0.1f*this->getWord((uint8_t *)&raw[18+iPacketPos]));
           break;
           case 150: //Collector Active
                this->publish_state_(this->collector_active_,   this->getWord((uint8_t *)&raw[18+iPacketPos]) );
@@ -124,9 +124,9 @@ bool HewalexG422::parse_g422_responce_byte_(uint8_t byte) {
                this->publish_state_(this->collector_pump_speed_,this->getWord((uint8_t *)&raw[18+iPacketPos])  );
           break;
           case 166:  //TotalEnergy
-               this->publish_state_(this->total_energy_kwh_,0.1f*(this->getWord((uint8_t *)&raw[18+iPacketPos]) << 16 | this->getWord((uint8_t *)&raw[20+iPacketPos])) );
+               this->publish_state_(this->total_energy_kwh_,   0.1f*this->getWord((uint8_t *)&raw[18+iPacketPos]) );
           break;
- 
+		  
          }
      }
   }
@@ -236,8 +236,7 @@ void HewalexG422::dump_config() {  // NOLINT(google-readability-function-size,re
   LOG_SENSOR("", "collector_pump_speed_",this->collector_pump_speed_);
   LOG_SENSOR("", "total_energy_kwh_",this->total_energy_kwh_);
 
-
-  this->check_uart_settings(115200);
+  this->check_uart_settings(38400);
 }
 
  
