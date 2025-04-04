@@ -7,15 +7,15 @@
 
 ## What has changed
 
-Tis fork is intended to fix some shortcomings of original script.
-Hewalex documenation tells specifically that uart baud rate must be 38400! This is fixed as well in software as in sample yaml.
-Fixed "Total Energy" output. In my case it did originally show some crazy -490000 kWh.
-Fixed consumption. In my case it did not show any consumption when idle. This obviously can not be true.
-Removed non working "Circulation pump switch" that referred to non existing GPIO.
-Renamed sensors to more understandable/intuitive names.
-Changed to (in my opinion) more pleasing icons.
-Added "Today's Energy" for HA statistics.
-Added "Today's Consuption".
+Tis fork is intended to fix some shortcomings of original script.<br/>
+Hewalex documenation tells specifically that uart baud rate must be 38400! This is fixed as well in software as in sample yaml.<br/>
+Fixed "Total Energy" output. In my case it did originally show some crazy -490000 kWh.<br/>
+Fixed consumption. In my case it did not show any consumption when idle. This obviously can not be true.<br/>
+Removed non working "Circulation pump switch" that referred to non existing GPIO.<br/>
+Renamed sensors to more understandable/intuitive names.<br/>
+Changed to (in my opinion) more pleasing icons.<br/>
+Added "Today's Energy" for HA statistics.<br/>
+Added "Today's Consuption".<br/>
 Added mutch more understandable hardware instructions.
 
 ## Installation
