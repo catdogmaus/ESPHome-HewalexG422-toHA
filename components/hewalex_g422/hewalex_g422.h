@@ -35,6 +35,36 @@ class HewalexG422 : public uart::UARTDevice, public PollingComponent {
     this->temperatures_[temperature].temperature_sensor_ = temperature_sensor;
   }
 
+
+  // Public getter methods for pump states
+  float get_collector_pump_state() const {
+    if (this->collector_pump_on_ != nullptr) {
+      return this->collector_pump_on_->state;
+    }
+    return 0;
+  }
+
+  float get_boiler_pump_state() const {
+    if (this->boiler_pump_on_ != nullptr) {
+      return this->boiler_pump_on_->state;
+    }
+    return 0;
+  }
+
+  float get_circulation_pump_state() const {
+    if (this->circulation_pump_on_ != nullptr) {
+      return this->circulation_pump_on_->state;
+    }
+    return 0;
+  }
+
+  float get_collector_active_state() const {
+    if (this->collector_active_ != nullptr) {
+      return this->collector_active_->state;
+    }
+    return 0;
+  }
+
  protected:
   uint16_t getWord(uint8_t *d);
   float getTemp(uint8_t * d, float scale);
@@ -55,7 +85,7 @@ class HewalexG422 : public uart::UARTDevice, public PollingComponent {
   sensor::Sensor *circulation_pump_on_;
   sensor::Sensor *collector_pump_speed_;
   sensor::Sensor *total_energy_kwh_;
- 
+  
 
   struct Temperature {
     sensor::Sensor *temperature_sensor_{nullptr};
