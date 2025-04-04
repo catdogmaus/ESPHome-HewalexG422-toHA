@@ -21,7 +21,7 @@ Added mutch more understandable hardware instructions.
 
 ## Total Energy
 
-Total Energy "fix" is made in ESPHome YAML. Reason for that is, I am not sure if it does work exactly same for all users. If your Total Energy output is still not correct it should be easy to correct for everybody. In yaml:
+Total Energy "fix" is made most part in ESPHome YAML. Reason for that is, I am not sure if it does work exactly same for all users. If your Total Energy output is still not correct it should be easy to correct for everybody. In yaml:
 ```
   - platform: template
     name: "Collector Total Energy Adjusted" # Output actual energy
