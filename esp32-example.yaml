@@ -95,8 +95,8 @@ sensor:
       name: "Consumption"
       id: hewalex_consumption
     flow_rate:
-      name: "Flow Rate (l/min)"
-      unit_of_measurement: "l/min"
+      name: "Flow Rate (l⁄min)"
+      unit_of_measurement: "l⁄min"
     collector_pump_speed:
       name: "Collector Pump Speed (0-15)" 
     total_energy_kwh:
@@ -104,16 +104,16 @@ sensor:
       id: total_energy_kwh 
       internal: true
     collector_pump_on:
-      name: "Collector Pump (P) ON (1/0)"
+      name: "Collector Pump (P) ON (1⁄0)"
       internal: true
     boiler_pump_on:
-      name: "Boiler Pump (K) ON (1/0)"
+      name: "Boiler Pump (K) ON (1⁄0)"
       internal: true
     circulation_pump_on:
-      name: "Circulation Pump (C) ON (1/0)"
+      name: "Circulation Pump (C) ON (1⁄0)"
       internal: true
     collector_active:  
-      name: "Collector Active (1/0)"
+      name: "Collector Active (1⁄0)"
       internal: true
 
   - platform: total_daily_energy
