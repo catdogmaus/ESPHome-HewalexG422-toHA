@@ -45,7 +45,7 @@ calculate and change the number added to lambda .state
 You can install this component with [ESPHome external components feature](https://esphome.io/components/external_components.html) like this:
 ```yaml
 external_components:
-  - source: github://catdogmaus/ESPHome-HewalexG422-toHA@main
+  - source: github://catdogmaus/ESPHome-HewalexG422-toHA
 ```
 or just use the `esp32-example.yaml` 
 
