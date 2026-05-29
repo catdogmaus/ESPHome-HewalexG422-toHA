@@ -19,7 +19,9 @@ Hewalex documenation tells specifically that uart baud rate must be 38400! This 
 Fixed "Total Energy" output. In my case it did originally show some crazy -490000 kWh.<br/>
 Fixed consumption. In my case it did not show any consumption when idle. This obviously can not be true.<br/>
 Removed non working "Circulation pump switch" that referred to non existing GPIO.<br/>
+Fixed bunch of script typos.<br/>
 Renamed sensors to more understandable/intuitive names.<br/>
+Added Hewalex controller date and time.<br/>
 Changed to (in my opinion) more pleasing icons.<br/>
 Added "Today's Energy" for HA statistics. This uses ESPHome built in mechanism so its output is dependent of correct Total Energy numbers.<br/>
 Added "Today's Consuption".<br/>
