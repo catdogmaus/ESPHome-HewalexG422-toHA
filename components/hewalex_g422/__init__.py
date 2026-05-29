@@ -3,7 +3,9 @@ from esphome.components import uart
 import esphome.config_validation as cv
 from esphome.const import CONF_ID
 
-CODEOWNERS = ["@smaksimowicz"]
+# Originally created by @smaksimowicz
+# Forked and maintained by @catdogmaus
+CODEOWNERS = ["@catdogmaus"]
 
 DEPENDENCIES = ["uart"]
 AUTO_LOAD = ["binary_sensor", "sensor", "switch", "text_sensor"]
