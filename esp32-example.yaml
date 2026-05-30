@@ -175,3 +175,27 @@ binary_sensor:
     lambda: |-
       return (id(g422_0).get_collector_active_state() == 1);
     device_class: power
+
+# Date and Time Text Sensors Declaration
+text_sensor:
+  - platform: hewalex_g422
+    hewalex_g422_id: g422_0
+    device_time:
+      name: "Solar Controller Time"
+    device_date:
+      id: raw_device_date
+      internal: true   
+
+  - platform: template
+    name: "Solar Controller Date"
+    icon: "mdi:calendar"
+    # Modify for you own desired date fornat. No device_class! This ensures HA accepts the dots (DD.MM.YYYY)
+    lambda: |-
+      std::string s = id(raw_device_date).state;
+      
+      // Safety check: Don't slice if the string hasn't loaded yet
+      if (s.length() < 10) return {"Unknown"};
+
+      // Extract parts from YYYY-MM-DD (e.g. 2026-05-29)
+      // Day is at index 8, Month is at index 5, Year is at index 0
+      return s.substr(8, 2) + "." + s.substr(5, 2) + "." + s.substr(0, 4);
