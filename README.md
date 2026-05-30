@@ -29,18 +29,7 @@ Added mutch more understandable hardware instructions.
 
 ## Total Energy
 
-Total Energy "fix" is made most part in ESPHome YAML. Reason for that is, I am not sure if it does work exactly same for all users. If your Total Energy output is still not correct it should be easy to correct for everybody. In yaml:
-```
-  - platform: template
-    name: "Collector Total Energy Adjusted" # Output actual energy
-    device_class: energy
-    state_class: total_increasing
-    id: total_energy
-    lambda: |-
-      return id(total_energy_kwh).state + 6553.6;
-    unit_of_measurement: "kWh"
-```
-calculate and change the number added to lambda .state 
+__Anybody who have used this before june 2026 has to migrate to new yaml! Added Date and time, also permanent fix to Total Energy.__
 
 ## Installation
 
