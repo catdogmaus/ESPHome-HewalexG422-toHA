@@ -11,7 +11,7 @@ esphome:
   min_version: 2024.6.0
   name_add_mac_suffix: false
   project:
-    name: esphome.web
+    name: G422.hewalex
     version: dev
 
 esp32:
