@@ -49,3 +49,7 @@ Keep in mind that in controller side, between A+ and B+ 120 Ω resistor may be n
 
 In my case - none. 
 
+## If you have trouble to get it to work
+
+Check that you have not switched the data cables. Swich the data cables. Try another board. Try using the files in a (ESPHome) local folder. Is you yaml correct? Does you 12V to 5V board give actually 5V not 4.6 or even less. Is you device supported (G422)? Also dont keep usb cable on when connected to UART, some boards are allergic to that!
+The script is 100% tested. If nothing works, the problem is most likely hardware.
