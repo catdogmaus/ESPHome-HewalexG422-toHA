@@ -29,7 +29,7 @@ Added mutch more understandable hardware instructions.
 
 ## Total Energy
 
-__Anybody who have used this before june 2026 has to migrate to new yaml! Added Date and time, also permanent fix to Total Energy.__
+__Anybody who have used this before june 2026 has to migrate to new yaml! Added Date and Time, also permanent fix to Total Energy.__
 
 ## Installation
 
