@@ -143,8 +143,18 @@ bool HewalexG422::parse_g422_response_byte_(uint8_t byte) {
           case 156:  //CollectorPumpSpeed
                this->publish_state_(this->collector_pump_speed_, this->getWord(&raw[18+iPacketPos]));
           break;
-          case 166:  //TotalEnergy
-               this->publish_state_(this->total_energy_kwh_, 0.1f * this->getWord(&raw[18+iPacketPos]));
+          case 166:  // TotalEnergy (32-bit, little-endian word order)
+               // Ensure we have enough bytes in the buffer to read 4 bytes safely
+               if (18 + iPacketPos + 3 < this->rx_buffer_.size()) {
+                   // Cast to uint32_t to prevent C++ from applying negative signs
+                   uint32_t low_word = (uint32_t)this->getWord(&raw[18+iPacketPos]);
+                   uint32_t high_word = (uint32_t)this->getWord(&raw[20+iPacketPos]);
+                   
+                   // Combine them properly
+                   uint32_t total_energy_raw = low_word | (high_word << 16);
+                   
+                   this->publish_state_(this->total_energy_kwh_, 0.1f * total_energy_raw);
+               }
           break;
          }
      }
