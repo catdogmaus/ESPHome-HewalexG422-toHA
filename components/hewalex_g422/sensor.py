@@ -2,7 +2,6 @@ import esphome.codegen as cg
 from esphome.components import sensor
 import esphome.config_validation as cv
 from esphome.const import (
- 
     DEVICE_CLASS_TEMPERATURE,
     DEVICE_CLASS_POWER,
     DEVICE_CLASS_ENERGY,
@@ -11,10 +10,8 @@ from esphome.const import (
     STATE_CLASS_MEASUREMENT,
     UNIT_CELSIUS,
     UNIT_EMPTY, 
-    UNIT_PERCENT,
-    UNIT_WATT ,
-    UNIT_KILOWATT_HOURS ,
- 
+    UNIT_WATT,
+    UNIT_KILOWATT_HOURS,
 )
 
 from . import CONF_HEWALEG_G422_ID, HewalexG422
@@ -23,8 +20,6 @@ DEPENDENCIES = ["hewalex_g422"]
 
 CODEOWNERS = ["@smaksimowicz"]
 
- 
-
 CONF_TEMPERATURE_1 = "temperature_1"
 CONF_TEMPERATURE_2 = "temperature_2"
 CONF_TEMPERATURE_3 = "temperature_3"
@@ -32,9 +27,8 @@ CONF_TEMPERATURE_4 = "temperature_4"
 CONF_TEMPERATURE_5 = "temperature_5"
 CONF_TEMPERATURE_6 = "temperature_6"
  
- 
 CONF_COLLECTOR_POWER = "collector_power"
-CONF_CONSUPTION_W = "consumption_w"
+CONF_CONSUMPTION_W = "consumption_w"
 CONF_COLLECTOR_ACTIVE = "collector_active"
 CONF_FLOW_RATE = "flow_rate"
 CONF_COLLECTOR_PUMP_ON = "collector_pump_on"
@@ -60,7 +54,7 @@ TEMPERATURES = [
 
 SENSORS = [
     CONF_COLLECTOR_POWER,
-    CONF_CONSUPTION_W,
+    CONF_CONSUMPTION_W,
     CONF_COLLECTOR_ACTIVE,
     CONF_FLOW_RATE,
     CONF_COLLECTOR_PUMP_ON,
@@ -70,7 +64,6 @@ SENSORS = [
     CONF_TOTAL_ENERGY_KWH,
 ]
 
-# pylint: disable=too-many-function-args
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(CONF_HEWALEG_G422_ID): cv.use_id(HewalexG422),
@@ -117,14 +110,14 @@ CONFIG_SCHEMA = cv.Schema(
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
         cv.Optional(CONF_COLLECTOR_POWER): sensor.sensor_schema(
-            unit_of_measurement=UNIT_WATT ,
+            unit_of_measurement=UNIT_WATT,
             icon=ICON_SOLAR_POWER,
             accuracy_decimals=0,
             device_class=DEVICE_CLASS_POWER,
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
-         cv.Optional(CONF_CONSUPTION_W): sensor.sensor_schema(
-            unit_of_measurement=UNIT_WATT ,
+         cv.Optional(CONF_CONSUMPTION_W): sensor.sensor_schema(
+            unit_of_measurement=UNIT_WATT,
             icon=ICON_EMPTY,
             accuracy_decimals=1,
             device_class=DEVICE_CLASS_POWER,
@@ -173,13 +166,12 @@ CONFIG_SCHEMA = cv.Schema(
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
         cv.Optional(CONF_TOTAL_ENERGY_KWH): sensor.sensor_schema(
-            unit_of_measurement=UNIT_KILOWATT_HOURS ,
+            unit_of_measurement=UNIT_KILOWATT_HOURS,
             icon=ICON_EMPTY,
             accuracy_decimals=2,
             device_class=DEVICE_CLASS_ENERGY,
             state_class=STATE_CLASS_MEASUREMENT,
         ), 
- 
     }
 )
 
