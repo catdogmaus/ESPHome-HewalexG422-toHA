@@ -102,7 +102,8 @@ sensor:
     total_energy_kwh:
       name: "Collector Total Energy"
       id: total_energy_kwh 
-      internal: true
+      device_class: energy
+      state_class: total_increasing
     collector_pump_on:
       name: "Collector Pump (P) ON (1⁄0)"
       internal: true
@@ -115,6 +116,7 @@ sensor:
     collector_active:  
       name: "Collector Active (1⁄0)"
       internal: true
+
 
   - platform: total_daily_energy
     name: "Today's Energy"
@@ -136,15 +138,7 @@ sensor:
       # Multiplication factor from W to kW is 0.001
       - multiply: 0.001
 
-  - platform: template
-    name: "Collector Total Energy Adjusted" # Output actual energy
-    device_class: energy
-    state_class: total_increasing
-    id: total_energy
-    lambda: |-
-      return id(total_energy_kwh).state + 6553.6;
-    unit_of_measurement: "kWh"
-    
+  
 # Enable time component to reset energy at midnight  
 time:
   - platform: homeassistant
