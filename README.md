@@ -43,6 +43,7 @@ or just use the `esp32-example.yaml`
 ## Hardware 
 You need ESP32 board, some 12V to 5V board and TTL to RS485 (max 3585 module)
 Keep in mind that in controller side, between A+ and B+ 120 Ω resistor may be needed but today most TTL boards already have onboard termination resistors. To use them proprly you must refer to your board documetation. Mostly for that you need to solder on specific jumper on your board. When you data cable is short you may not need resistor at all!
+This is tested with ESP32-WROOM-32D board. There is some feedback that you could have troubles to get some newer boards talk to uart.
 ![Hardware](https://github.com/catdogmaus/ESPHome-HewalexG422-toHA/blob/main/files/scema.png)
 
 ## Issues
