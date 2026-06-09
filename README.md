@@ -27,7 +27,7 @@ Added "Today's Energy" for HA statistics. This uses ESPHome built in mechanism s
 Added "Today's Consuption".<br/>
 Added mutch more understandable hardware instructions.
 
-## Total Energy
+## Breaking changes beginning june 2026
 
 __Anybody who have used this before june 2026 has to migrate to new yaml! Added Date and Time, also permanent fix to Total Energy.__
 
